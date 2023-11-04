@@ -1,0 +1,32 @@
+import re
+
+response_rules = {
+    "hello": "Hello! How can I assist you today?",
+    "who created you": "I was created by Princess Afra Tahaseen",
+    "tell me a joke": "Sure, here's one: What do you get when you cross a snowman and a vampire? Frostbite!",
+    "what is the capital of japan": "The capital of Japan is Tokyo.",
+    "how to maintain a balanced diet": "Maintaining a balanced diet involves consuming a variety of fruits, vegetables, lean proteins, and whole grains. It's important to limit processed foods and sugary beverages.",
+    "how to stay safe during a pandemic": "During a pandemic, it's crucial to follow public health guidelines, such as wearing masks, practicing social distancing, and getting vaccinated. Staying informed from reliable sources is also important.",
+    "calculate the square root of 16": "The square root of 16 is 4.",
+    "what is artificial intelligence": "Artificial intelligence (AI) is a field of computer science that focuses on creating machines and software capable of intelligent behavior, such as learning and problem-solving.",
+    "how to improve sleep quality": "To improve sleep quality, maintain a consistent sleep schedule, create a comfortable sleep environment, and avoid stimulants like caffeine close to bedtime.",
+    "tell me a fascinating science fact": "Sure, here's one: Octopuses have three hearts – two pump blood to the gills, and one pumps it to the rest of the body!",
+    "what is climate change": "Climate change refers to long-term changes in the Earth's climate patterns. It's primarily driven by human activities like the burning of fossil fuels, leading to global warming and environmental impacts.",
+}
+
+def get_response(user_input):
+    user_input = user_input.lower()
+    for pattern, response in response_rules.items():
+        if re.search(r'\b' + re.escape(pattern) + r'\b', user_input):
+            return response
+    return "I'm not sure I understand. Please ask another question."
+
+print("Chatbot: Hello! I'm here to assist you. Type 'bye' to exit.")
+while True:
+    user_input = input("You: ")
+    response = get_response(user_input)
+    print("Chatbot:", response)
+
+    # Exit the chatbot if the user says 'bye'
+    if "bye" in user_input.lower():
+        break
